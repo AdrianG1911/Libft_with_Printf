@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/12 17:00:59 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:18:09 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
-
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+	ft_putchar_fd('\n', fd);
 }

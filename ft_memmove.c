@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/06 15:11:35 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:14:17 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
+	unsigned char	*d_ptr;
+	unsigned char	*s_ptr;
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	d_ptr = (unsigned char *)dest;
+	s_ptr = (unsigned char *)src;
+	if (s_ptr < d_ptr)
+	{
+		while (n > 0)
+		{
+			n--;
+			d_ptr[n] = s_ptr[n];
+		}
+	}
+	else
+		ft_memcpy(d_ptr, s_ptr, n);
+	return (dest);
 }

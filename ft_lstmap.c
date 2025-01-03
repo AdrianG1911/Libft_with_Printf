@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/24 17:52:01 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:14:17 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
+	t_list	*newlst;
+	t_list	*curnode;
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (!lst || !f || !del)
+		return (NULL);
+	newlst = NULL;
+	while (lst)
+	{
+		curnode = ft_lstnew(f(lst->content));
+		if (curnode == NULL)
+		{
+			ft_lstclear(&newlst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&newlst, curnode);
+		lst = lst->next;
+	}
+	return (newlst);
 }

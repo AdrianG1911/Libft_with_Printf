@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/09 15:59:13 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:18:00 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
+	char	*sub;
+	size_t	slen;
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (slen < start)
+		len = 0;
+	else if (len > slen)
+		len = slen;
+	sub = (char *)malloc(len + 1);
+	if (!sub)
+		return (NULL);
+	if (start >= slen)
+		start = slen;
+	if (slen - start < len)
+		len = slen - start;
+	ft_strlcpy(sub, s + start, len + 1);
+	return (sub);
 }

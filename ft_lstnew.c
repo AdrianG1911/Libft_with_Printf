@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/19 15:13:40 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:14:17 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+t_list	*ft_lstnew(void *content)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
+	t_list	*newnode;
+
+	newnode = (t_list *)malloc(sizeof(t_list));
+	if (!newnode)
+		return (NULL);
+	newnode->content = content;
+	newnode->next = NULL;
+	return (newnode);
 }
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
+// int	main(void)
+// {
+// 	printf("%lu\n", sizeof(void *));
+// }

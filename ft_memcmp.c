@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/06 15:46:37 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:14:17 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
+	size_t			i;
+	unsigned char	*s1p;
+	unsigned char	*s2p;
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	i = 0;
+	s1p = (unsigned char *)s1;
+	s2p = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (s1p[i] != s2p[i])
+			return ((int)(s1p[i] - s2p[i]));
+		i++;
+	}
+	return (0);
 }

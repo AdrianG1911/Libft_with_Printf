@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/12 17:04:12 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:18:09 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+static long	ft_abs(long n)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
-int	ft_printstr(char *str)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	long	num;
+	int		i;
+	char	numst[11];
+
+	numst[10] = 0;
+	if (n < 0)
+		ft_putchar_fd('-', fd);
+	num = ft_abs(n);
+	i = 10;
+	while (i > 0)
+	{
+		i--;
+		numst[i] = (num % 10 + '0');
+		num /= 10;
+	}
+	while (numst[i] == '0')
+		i++;
+	if (numst[i] == 0)
+		i--;
+	ft_putstr_fd(numst + i, fd);
 }

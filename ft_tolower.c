@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/04/17 17:21:52 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:18:00 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+int	ft_tolower(int c)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
+	if (64 < c && c < 91)
+		c += 32;
+	return (c);
 }
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
+// int main()
+// {
+// 	int	a;
+// 	a = -1;
+// 	while (++a < 350)
+// 	{
+// 		if (ft_tolower(a) != tolower(a))
+// 		{
+// 			printf("Huh?, this is where it went wrong %d\n", a);
+// 			printf("%d, %d\n", ft_tolower(a), tolower(a));
+// 		}
+// 	}
+
+// }

@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/12 16:43:28 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:18:03 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
-}
+	unsigned int	i;
+	unsigned int	slen;
+	char			*result;
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (!s || !f)
+		return (NULL);
+	slen = ft_strlen(s);
+	result = (char *)malloc(slen + 1);
+	if (!result)
+		return (NULL);
+	result[slen] = 0;
+	i = 0;
+	while (s[i])
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	return (result);
 }

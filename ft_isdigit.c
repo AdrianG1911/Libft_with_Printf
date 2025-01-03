@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/04/17 13:41:45 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:17:47 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+int	ft_isdigit(int c)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
+	if (47 < c && c < 58)
+		return (1);
+	return (0);
 }
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
+// int main()
+// {
+// 	int a;
+// 	a = -1;
+// 	while (++a < 1000000)
+// 	{
+// 		if (ft_isdigit(a) != isdigit(a))
+// 			printf("Huh?, this is where it went wrong %d\n", a);
+// 		else
+// 			printf("%d, Ok!\n", a);
+// 	}
+// }

@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_p_char_str.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrgutie <adrgutie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 13:50:42 by adrgutie          #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:13 by adrgutie         ###   ########.fr       */
+/*   Created: 2024/05/09 14:19:45 by adrgutie          #+#    #+#             */
+/*   Updated: 2025/01/03 16:17:45 by adrgutie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printchar(char ch)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	ft_putchar_fd(ch, 1);
-	return (1);
+	void	*p;
+
+	if (nmemb && SIZE_MAX / nmemb < size)
+	{
+		return (NULL);
+	}
+	p = malloc(nmemb * size);
+	if (p)
+		ft_memset(p, 0, nmemb * size);
+	return (p);
 }
 
-int	ft_printstr(char *str)
-{
-	if (!str)
-		return (ft_printstr("(null)"));
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
+// int	main()
+// {
+// 	char *a;
+// 	char *b;
+
+// 	a = ft_calloc(0,0);
+// 	b = calloc(0,0);
+// 	if (b == NULL)
+// 		printf("calloc returned NULL");
+// 	if (a != b)
+// 		printf("%p, %p\n", a, b);
+// 	printf("show me");
+// }
